@@ -9,7 +9,7 @@
 
 <h1 class="text-center text-info mt-1">QUẢN TRỊ SẢN PHẨM</h1>
 <div>
-    <a class="btn btn-info" href="<c:url value="/products" />">Thêm sản phẩm</a>
+    <a class="btn btn-success" href="<c:url value="/products" />">Thêm sản phẩm</a>
 </div>
 <table class="table table-striped mt-1">
     <tr>
@@ -26,9 +26,12 @@
             <td>${p.name}</td>
             <td>${String.format("%,d", p.price)} VNĐ</td>
             <td>
-                <button class="btn btn-info">Cập nhật</button>
-                <button class="btn btn-danger">Xóa</button>
+                <c:url value="/products/${p.id}" var="url" />
+                <a class="btn btn-info" href="<c:url value="/products/${p.id}" />">Cập nhật</a>
+                <button onclick="deleteProduct('${url}',${p.id})" class="btn btn-danger">Xóa</button>
             </td>
         </tr>
     </c:forEach>
 </table>
+
+<script src="<c:url value="/js/script.js" />"></script>

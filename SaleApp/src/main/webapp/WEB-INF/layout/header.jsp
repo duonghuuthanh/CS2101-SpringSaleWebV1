@@ -29,7 +29,7 @@
                 </c:forEach>
             </ul>
             <form action="<c:url value="/" />" class="d-flex">
-                <input class="form-control me-2" name="kw" type="text" placeholder="Nhập tên...">
+                <input class="form-control me-2" name="kw" type="search" placeholder="Nhập tên...">
                 <button class="btn btn-primary" type="submit">Tìm</button>
             </form>
         </div>
