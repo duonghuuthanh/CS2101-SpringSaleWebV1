@@ -1,6 +1,7 @@
 com\dht\pojo\Category.class
 com\dht\services\impl\CategoryServiceImpl.class
 com\dht\pojo\Category_.class
+com\dht\configs\TilesConfig.class
 com\dht\pojo\Comment.class
 com\dht\configs\WebAppContextConfig.class
 com\dht\pojo\Tag.class
@@ -16,6 +17,7 @@ com\dht\pojo\ProdTag.class
 com\dht\pojo\SaleOrder.class
 com\dht\pojo\User.class
 com\dht\repositories\impl\ProductRepositoryImpl.class
+com\dht\controllers\ProductController.class
 com\dht\services\ProductService.class
 com\dht\pojo\SaleOrder_.class
 com\dht\repositories\impl\CategoryRepositoryImpl.class

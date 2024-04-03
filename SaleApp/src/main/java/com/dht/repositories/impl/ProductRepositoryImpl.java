@@ -88,6 +88,5 @@ public class ProductRepositoryImpl implements ProductRepository {
     public void addOrUpdate(Product p) {
         Session s = this.factoryBean.getObject().getCurrentSession();
         s.saveOrUpdate(p);
-
     }
 }
