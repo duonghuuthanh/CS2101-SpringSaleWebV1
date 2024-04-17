@@ -2,16 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.dht.repositories;
+package com.dht.services;
 
-import com.dht.pojo.Category;
 import java.util.List;
 
 /**
  *
  * @author admin
  */
-public interface CategoryRepository {
-    List<Category> getCates();
-    Category getCategoryById(int id);
+public interface StatsService {
+    List<Object[]> statsRevenueByProduct();
+    List<Object[]> statsRevenueByPeriod(int year, String period);
 }

@@ -4,37 +4,29 @@
  */
 package com.dht.repositories.impl;
 
-import com.dht.pojo.Category;
-import com.dht.repositories.CategoryRepository;
+import com.dht.pojo.Comment;
+import com.dht.repositories.CommentRepository;
 import java.util.List;
 import javax.persistence.Query;
 import org.hibernate.Session;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author admin
  */
 @Repository
-@Transactional
-public class CategoryRepositoryImpl implements CategoryRepository {
-    @Autowired
+public class CommentRepositoryImpl implements CommentRepository {
     private LocalSessionFactoryBean factory;
 
     @Override
-    public List<Category> getCates() {
+    public List<Comment> getComments(int productId) {
         Session s = this.factory.getObject().getCurrentSession();
-        Query q = s.createNamedQuery("Category.findAll");
+        Query query = s.createQuery("From Comment WHERE productI=:productId");
+        query.setParameter("productId", productId);
         
-        return q.getResultList();
+        return query.getResultList();
     }
-
-    @Override
-    public Category getCategoryById(int id) {
-        Session s = this.factory.getObject().getCurrentSession();
-        return s.get(Category.class, id);
-    }
+    
 }

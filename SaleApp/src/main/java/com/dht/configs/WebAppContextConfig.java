@@ -4,8 +4,7 @@
  */
 package com.dht.configs;
 
-import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
+
 import com.dht.fomatters.CategoryFormatter;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -89,14 +88,5 @@ public class WebAppContextConfig implements WebMvcConfigurer {
         registry.addFormatter(new CategoryFormatter());
     }
 
-    @Bean
-    public Cloudinary cloudinary() {
-        Cloudinary cloudinary
-                = new Cloudinary(ObjectUtils.asMap(
-                        "cloud_name", "dxxwcby8l",
-                        "api_key", "448651448423589",
-                        "api_secret", "ftGud0r1TTqp0CGp5tjwNmkAm-A",
-                        "secure", true));
-        return cloudinary;
-    }
+    
 }

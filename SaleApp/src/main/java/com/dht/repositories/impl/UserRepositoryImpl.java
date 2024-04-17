@@ -4,9 +4,8 @@
  */
 package com.dht.repositories.impl;
 
-import com.dht.pojo.Category;
-import com.dht.repositories.CategoryRepository;
-import java.util.List;
+import com.dht.pojo.User;
+import com.dht.repositories.UserRepository;
 import javax.persistence.Query;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,21 +19,22 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Repository
 @Transactional
-public class CategoryRepositoryImpl implements CategoryRepository {
+public class UserRepositoryImpl implements UserRepository {
     @Autowired
     private LocalSessionFactoryBean factory;
 
     @Override
-    public List<Category> getCates() {
+    public User getUserByUsername(String username) {
         Session s = this.factory.getObject().getCurrentSession();
-        Query q = s.createNamedQuery("Category.findAll");
+        Query q = s.createQuery("FROM User WHERE username = :username");
+        q.setParameter("username", username);
         
-        return q.getResultList();
+        return (User) q.getSingleResult();
     }
 
     @Override
-    public Category getCategoryById(int id) {
+    public void addUser(User user) {
         Session s = this.factory.getObject().getCurrentSession();
-        return s.get(Category.class, id);
+        s.save(user);
     }
 }

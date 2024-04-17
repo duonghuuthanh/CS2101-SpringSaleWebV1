@@ -4,14 +4,13 @@
  */
 package com.dht.repositories;
 
-import com.dht.pojo.Category;
-import java.util.List;
+import com.dht.pojo.User;
 
 /**
  *
  * @author admin
  */
-public interface CategoryRepository {
-    List<Category> getCates();
-    Category getCategoryById(int id);
+public interface UserRepository {
+    User getUserByUsername(String username);
+    void addUser(User user);
 }

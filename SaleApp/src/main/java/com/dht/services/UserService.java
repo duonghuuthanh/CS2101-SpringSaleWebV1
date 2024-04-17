@@ -4,14 +4,14 @@
  */
 package com.dht.services;
 
-import com.dht.pojo.Category;
-import java.util.List;
+import com.dht.pojo.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  *
  * @author admin
  */
-public interface CategoryService {
-    List<Category> getCates();
-    Category getCategoryById(int id);
+public interface UserService extends UserDetailsService {
+    User getUserByUsername(String username);
+    void addUser(User user);
 }

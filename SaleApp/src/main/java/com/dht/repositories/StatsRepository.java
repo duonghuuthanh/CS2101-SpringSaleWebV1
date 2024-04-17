@@ -4,14 +4,13 @@
  */
 package com.dht.repositories;
 
-import com.dht.pojo.Category;
 import java.util.List;
 
 /**
  *
  * @author admin
  */
-public interface CategoryRepository {
-    List<Category> getCates();
-    Category getCategoryById(int id);
+public interface StatsRepository {
+    List<Object[]> statsRevenueByProduct();
+    List<Object[]> statsRevenueByPeriod(int year, String period);
 }

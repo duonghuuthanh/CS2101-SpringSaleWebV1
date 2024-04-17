@@ -4,9 +4,9 @@
  */
 package com.dht.services.impl;
 
-import com.dht.pojo.Category;
-import com.dht.repositories.CategoryRepository;
-import com.dht.services.CategoryService;
+import com.dht.pojo.Comment;
+import com.dht.repositories.CommentRepository;
+import com.dht.services.CommentService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,17 +16,12 @@ import org.springframework.stereotype.Service;
  * @author admin
  */
 @Service
-public class CategoryServiceImpl implements CategoryService {
+public class CommentServiceImpl implements CommentService {
     @Autowired
-    private CategoryRepository cateRepo;
-
+    private CommentRepository commentRepo;
+    
     @Override
-    public List<Category> getCates() {
-        return this.cateRepo.getCates();
-    }
-
-    @Override
-    public Category getCategoryById(int id) {
-        return this.cateRepo.getCategoryById(id);
+    public List<Comment> getComments(int productId) {
+        return this.commentRepo.getComments(productId);
     }
 }

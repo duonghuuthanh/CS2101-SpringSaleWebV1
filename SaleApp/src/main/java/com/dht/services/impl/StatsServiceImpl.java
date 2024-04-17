@@ -4,9 +4,8 @@
  */
 package com.dht.services.impl;
 
-import com.dht.pojo.Category;
-import com.dht.repositories.CategoryRepository;
-import com.dht.services.CategoryService;
+import com.dht.repositories.StatsRepository;
+import com.dht.services.StatsService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,17 +15,18 @@ import org.springframework.stereotype.Service;
  * @author admin
  */
 @Service
-public class CategoryServiceImpl implements CategoryService {
+public class StatsServiceImpl implements StatsService {
     @Autowired
-    private CategoryRepository cateRepo;
+    private StatsRepository statsRepo;
 
     @Override
-    public List<Category> getCates() {
-        return this.cateRepo.getCates();
+    public List<Object[]> statsRevenueByProduct() {
+        return this.statsRepo.statsRevenueByProduct();
     }
 
     @Override
-    public Category getCategoryById(int id) {
-        return this.cateRepo.getCategoryById(id);
+    public List<Object[]> statsRevenueByPeriod(int year, String period) {
+        return this.statsRepo.statsRevenueByPeriod(year, period);
     }
+    
 }

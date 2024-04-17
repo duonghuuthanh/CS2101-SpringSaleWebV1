@@ -2,16 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.dht.repositories;
+package com.dht.configs;
 
-import com.dht.pojo.Category;
-import java.util.List;
+import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
 /**
  *
  * @author admin
  */
-public interface CategoryRepository {
-    List<Category> getCates();
-    Category getCategoryById(int id);
+public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplicationInitializer {
+    
 }

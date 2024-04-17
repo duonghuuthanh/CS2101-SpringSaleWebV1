@@ -4,14 +4,13 @@
  */
 package com.dht.repositories;
 
-import com.dht.pojo.Category;
+import com.dht.pojo.Comment;
 import java.util.List;
 
 /**
  *
  * @author admin
  */
-public interface CategoryRepository {
-    List<Category> getCates();
-    Category getCategoryById(int id);
+public interface CommentRepository {
+    List<Comment> getComments(int productId);
 }
