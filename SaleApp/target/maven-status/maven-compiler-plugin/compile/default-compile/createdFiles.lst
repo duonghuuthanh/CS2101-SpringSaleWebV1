@@ -1,3 +1,5 @@
+com\dht\services\impl\CommentServiceImpl.class
+com\dht\controllers\ApiUserController.class
 com\dht\services\UserService.class
 com\dht\pojo\Comment.class
 com\dht\repositories\impl\UserRepositoryImpl.class
@@ -7,6 +9,7 @@ com\dht\controllers\IndexController.class
 com\dht\services\CategoryService.class
 com\dht\pojo\ProdTag.class
 com\dht\pojo\User.class
+com\dht\repositories\CommentRepository.class
 com\dht\repositories\impl\ProductRepositoryImpl.class
 com\dht\controllers\ProductController.class
 com\dht\repositories\StatsRepository.class
@@ -20,6 +23,8 @@ com\dht\controllers\ApiProductController.class
 com\dht\configs\SpringSecurityConfig.class
 com\dht\pojo\User_.class
 com\dht\repositories\UserRepository.class
+com\dht\controllers\ApiCategoryController.class
+com\dht\services\CommentService.class
 com\dht\pojo\Category.class
 com\dht\services\impl\CategoryServiceImpl.class
 com\dht\pojo\Category_.class
@@ -34,8 +39,10 @@ com\dht\services\impl\ProductServiceImpl.class
 com\dht\pojo\OrderDetail.class
 com\dht\services\impl\StatsServiceImpl.class
 com\dht\services\StatsService.class
+.netbeans_automatic_build
 com\dht\pojo\Comment_.class
 com\dht\pojo\ProdTag_.class
+com\dht\repositories\impl\CommentRepositoryImpl.class
 com\dht\pojo\SaleOrder.class
 com\dht\pojo\SaleOrder_.class
 com\dht\pojo\OrderDetail_.class

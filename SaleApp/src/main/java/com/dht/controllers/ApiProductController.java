@@ -4,7 +4,6 @@
  */
 package com.dht.controllers;
 
-import com.dht.pojo.Category;
 import com.dht.pojo.Product;
 import com.dht.services.ProductService;
 import java.util.List;
