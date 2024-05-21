@@ -4,8 +4,12 @@
  */
 package com.dht.repositories.impl;
 
+import com.dht.pojo.Cart;
+import com.dht.pojo.OrderDetail;
 import com.dht.pojo.Product;
+import com.dht.pojo.SaleOrder;
 import com.dht.repositories.ProductRepository;
+import com.dht.repositories.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,12 +18,15 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -33,6 +40,8 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Autowired
     private LocalSessionFactoryBean factoryBean;
+    @Autowired
+    private UserRepository userRepository;
     @Autowired
     private Environment env;
 
@@ -104,5 +113,29 @@ public class ProductRepositoryImpl implements ProductRepository {
         Session s = this.factoryBean.getObject().getCurrentSession();
         Product p = this.getProductById(id);
         s.delete(p);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public boolean addReceipt(Map<String, Cart> cart) {
+        Session s = this.factoryBean.getObject().getCurrentSession();
+        
+        try {
+            SaleOrder r = new SaleOrder();
+            r.setUserId(userRepository.getUserByUsername(SecurityContextHolder.getContext().getAuthentication().getName()));
+            s.save(r);
+
+            for (Cart c: cart.values()) {
+                OrderDetail d = new OrderDetail();
+                d.setUnitPrice(c.getPrice());
+                d.setQuantity(c.getQuantity());
+                d.setOrderId(r);
+                d.setProductId(this.getProductById(c.getId()));
+                s.save(d);
+            }
+            return true;
+        } catch (HibernateException ex) {
+            return false;
+        }
     }
 }

@@ -31,7 +31,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan(basePackages = {
     "com.dht.controllers",
     "com.dht.repositories",
-    "com.dht.services"
+    "com.dht.services",
+    "com.dht.components"
 })
 public class WebAppContextConfig implements WebMvcConfigurer {
 

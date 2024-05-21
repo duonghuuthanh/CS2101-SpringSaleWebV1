@@ -4,14 +4,18 @@
  */
 package com.dht.controllers;
 
+import com.dht.components.JwtService;
 import com.dht.pojo.User;
 import com.dht.services.UserService;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -30,6 +34,8 @@ public class ApiUserController {
     private BCryptPasswordEncoder passswordEncoder;
     @Autowired
     private UserService userService;
+    @Autowired
+    private JwtService jwtService;
     
     @PostMapping(path = "/users/", consumes = {
         MediaType.APPLICATION_JSON_VALUE,
@@ -52,4 +58,17 @@ public class ApiUserController {
         
         this.userService.addUser(u);
     }
+    
+    @PostMapping("/login/")
+    @CrossOrigin
+    public ResponseEntity<String> login(@RequestBody User user) {
+        if (this.userService.authUser(user.getUsername(), user.getPassword()) == true) {
+            String token = this.jwtService.generateTokenLogin(user.getUsername());
+            
+            return new ResponseEntity<>(token, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>("error", HttpStatus.BAD_REQUEST);
+    }
+
 }

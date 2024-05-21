@@ -67,4 +67,9 @@ public class UserServiceImpl implements UserService {
         this.userRepo.addUser(user);
         
     }
+
+    @Override
+    public boolean authUser(String username, String password) {
+        return this.userRepo.authUser(username, password);
+    }
 }

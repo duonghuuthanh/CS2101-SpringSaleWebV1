@@ -2,16 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.dht.repositories;
+package com.dht.services;
 
-import com.dht.pojo.User;
+import com.dht.pojo.Cart;
+import java.util.Map;
 
 /**
  *
  * @author admin
  */
-public interface UserRepository {
-    User getUserByUsername(String username);
-    void addUser(User user);
-    boolean authUser(String username, String password);
+public interface ReceiptService {
+    boolean addReceipt(Map<String, Cart> carts);
 }
