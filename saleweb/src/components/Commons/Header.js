@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { Badge, Button, Col, Container, Form, Nav, Navbar, NavDropdown, Row, Spinner } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useOutlet } from "react-router-dom";
 import APIs, { endpoints } from "../../configs/APIs";
-import { CartContext } from "../../configs/Contexts";
+import { CartContext, MyDispatchContext, MyUserContext } from "../../configs/Contexts";
 import MySpinner from "./MySpinner";
 
 const Header = () => {
@@ -10,6 +10,8 @@ const Header = () => {
     const [kw, setKw] = useState("");
     const nav = useNavigate();
     const [value, ] = useContext(CartContext);
+    const user = useContext(MyUserContext);
+    const dispatch = useContext(MyDispatchContext);
 
     const loadCates = async () => {
         try {
@@ -46,6 +48,14 @@ const Header = () => {
                         </>}
                     </NavDropdown>
                     <Link to="/cart" className="nav-link">&#128722; <Badge bg="danger">{value}</Badge></Link>
+                    {user !== null?<>
+                        <Link to="/" className="nav-link text-danger">Xin chào {user.username}!</Link>
+                        <Link onClick={() => dispatch({"type": "logout"})} className="nav-link text-danger">Đăng xuất</Link>
+                    </>:<>
+                        <Link to="/login" className="nav-link text-danger">Đăng nhập</Link>
+                        <Link to="/register" className="nav-link text-info">Đăng ký</Link>
+                    </>}
+                  
                     
                 </Nav>
                 </Navbar.Collapse>
